@@ -28,11 +28,9 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
     const [didFilter, setDidFilter] = useState(false)
 
     function resetFilter() {
+        dashFilter(false)
         setDisableButton(false)
         setDidFilter(true)
-        setFilter(dashItemsProps)
-        dashFilter(false)
-        reset()
     }
 
     async function handleSubmitForm(data: FieldValues) {
@@ -70,10 +68,7 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
             return
         }
 
-        let teste = dashItemsProps
-        teste.data[0] = filter.data[0]
-
-        setFilter(teste)
+        setFilter(filter.data)
         dashFilter(true)
 
         toast.success("Sucesso ao filtrar os dados!", {

@@ -11,6 +11,8 @@ import { IDashCreditorFilter, IDashUserFilter } from "@/interfaces/coaching/dash
 
 export default async function Home() {
 
+    console.log("aassss")
+
     const dashReasons = await getDashCoachingReasons()
     const dashItems = await getDashCoachingItems()
     const backOffice: IResultDefaultResponse<IBackOfficesToday[] | null> = await getBackOfficeToday()

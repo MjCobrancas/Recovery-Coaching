@@ -8,8 +8,6 @@ import { useState } from "react";
 
 export function DashCoachingContainer({ dashReasons, dashItems, backOffices, creditorFilter, userFilter }: IDashContainer) {
 
-    console.log(dashItems, "valor do console padrao no container")
-
     const [isFilter, setIsFilter] = useState(false)
     const [dashItemsFilter, setDashItemsFilter] = useState<any[]>([])
 

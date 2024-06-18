@@ -26,19 +26,15 @@ ChartJS.register(
 
 export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, isFilter }: IDashCoachingGraphichsProps) {
     const [values, setValues] = useState(dashItems.data[0])
-    let identification = !isFilter ? dashItems.data[1] : dashItemsFilter.data[1]
-    let names = !isFilter ? dashItems.data[2] : dashItemsFilter.data[2]
+    const [identification, setIdentification] = useState(dashItems.data[1])
+    const [names, setNames] = useState(dashItems.data[2])
 
     useEffect(() => {
-        console.log(dashItems.data[0], "padrao")
-        if (isFilter) {
-            console.log(dashItemsFilter.data[0], "filtro")
-        }
         if (dashItems.status) {
             setHasItems(true)
         }
-        setValues(!isFilter ? dashItems.data[0] : dashItemsFilter.data[0])
-    }, [isFilter, dashItems.data, dashItemsFilter.data, dashItems.status])
+        setValues(!isFilter ? dashItems.data[0] : dashItemsFilter[0])
+    }, [isFilter, dashItems.data, dashItemsFilter, dashItems.status])
 
     let optionsReason: ChartOptions<'bar'> = {
         indexAxis: "y" as const,
@@ -264,7 +260,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
                     </div>
                 </div>
                 <div className={`w-full ${hasItems ? `` : ``}`}>
-                    <Bar options={options} data={dataReason} className={`z-10 ${hasItems ? `` : `h-0`}`} />
+                    <Bar options={optionsReason} data={dataReason} className={`z-10 ${hasItems ? `` : `h-0`}`} />
                     <div
                         className={`w-full border-2 rounded-md z-50 h-48 ${hasItems ? `hidden` : `relative`
                             }`}

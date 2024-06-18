@@ -16,7 +16,7 @@ export async function getFilterDashItems<T>(object: T) {
       },
       body: JSON.stringify(object)
     })
-      .then(async (value: any) => {
+      .then(async (value) => {
         const data = await value.json()
     
         if (data.length == 0 || data == null) {
