@@ -20,123 +20,124 @@ export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
                 setFilter={setValueFilter}
             />
 
+            <section className={`max-h-[24.8rem] overflow-y-auto pl-2 mt-4`}>
+                <table className={`w-[96vw] px-4 mx-auto my-4`}>
+                    <thead className={`bg-gray-200 dark:bg-slate-600`}>
+                        <tr>
 
-            <table className={`w-[96vw] px-4 mx-auto my-4`}>
-                <thead className={`bg-gray-200 dark:bg-slate-600`}>
-                    <tr>
+                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                                Negociador
+                            </th>
 
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
-                            Negociador
-                        </th>
+                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                                Supervisor
+                            </th>
 
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
-                            Supervisor
-                        </th>
+                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                                Credor
+                            </th>
 
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
-                            Credor
-                        </th>
+                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                                Motivo
+                            </th>
 
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
-                            Motivo
-                        </th>
+                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                                Data
+                            </th>
 
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
-                            Data
-                        </th>
+                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tr-md`}>
+                                Ações
+                            </th>
 
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tr-md`}>
-                            Ações
-                        </th>
+                        </tr>
+                    </thead>
+                    <tbody className={`items-center p-1 bg-slate-100`}>
+                        {isFiltred.length > 0 ?
+                            isFiltred.map((filter, i) => {
+                                return (
+                                    <tr
+                                        key={i}
+                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
+                                    >
 
-                    </tr>
-                </thead>
-                <tbody className={`items-center p-1 bg-slate-100`}>
-                    {isFiltred.length > 0 ?
-                        isFiltred.map((filter, i) => {
-                            return (
-                                <tr
-                                    key={i}
-                                    className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
-                                >
+                                        <td className={`p-2 text-center`}>
+                                            {filter.Operator_Name +
+                                                " " +
+                                                filter.Operator_Last_Name
+                                            }
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {filter.Operator_Name +
-                                            " " +
-                                            filter.Operator_Last_Name
-                                        }
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {filter.Supervisor_Name +
+                                                " " +
+                                                filter.Supervisor_Last_Name
+                                            }
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {filter.Supervisor_Name +
-                                            " " +
-                                            filter.Supervisor_Last_Name
-                                        }
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {filter.Creditor}
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {filter.Creditor}
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {filter.Reason}
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {filter.Reason}
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {filter.Created_At_Formatted}
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {filter.Created_At_Formatted}
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            <ListCoachingDialog
+                                                idForm={filter.Id_Form}
+                                            />
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                            : coachings.map((item, i) => {
+                                return (
+                                    <tr
+                                        key={i}
+                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
+                                    >
 
-                                    <td className={`p-2 text-center`}>
-                                        <ListCoachingDialog
-                                            idForm={filter.Id_Form}
-                                        />
-                                    </td>
-                                </tr>
-                            )
-                        })
-                        : coachings.map((item, i) => {
-                            return (
-                                <tr
-                                    key={i}
-                                    className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
-                                >
+                                        <td className={`p-2 text-center`}>
+                                            {item.Operator_Name +
+                                                " " +
+                                                item.Operator_Last_Name
+                                            }
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {item.Operator_Name +
-                                            " " +
-                                            item.Operator_Last_Name
-                                        }
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {item.Supervisor_Name +
+                                                " " +
+                                                item.Supervisor_Last_Name
+                                            }
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {item.Supervisor_Name +
-                                            " " +
-                                            item.Supervisor_Last_Name
-                                        }
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {item.Creditor}
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {item.Creditor}
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {item.Reason}
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {item.Reason}
-                                    </td>
+                                        <td className={`p-2 text-center`}>
+                                            {item.Created_At_Formatted}
+                                        </td>
 
-                                    <td className={`p-2 text-center`}>
-                                        {item.Created_At_Formatted}
-                                    </td>
-
-                                    <td className={`p-2 text-center`}>
-                                        <ListCoachingDialog
-                                            idForm={item.Id_Form}
-                                        />
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                </tbody>
-            </table>
+                                        <td className={`p-2 text-center`}>
+                                            <ListCoachingDialog
+                                                idForm={item.Id_Form}
+                                            />
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                    </tbody>
+                </table>
+            </section>
         </>
     )
 }
