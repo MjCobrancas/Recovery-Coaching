@@ -36,6 +36,17 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
     }
 
     async function handleSubmitForm(data: FieldValues) {
+        if (String(data.date).length > 0 || String(data.dateEnd).length > 0) {
+            if (String(data.date).length == 0 || String(data.dateEnd).length == 0) {
+                setError("date", {
+                    type: "400"
+                })
+                setError("dateEnd", {
+                    type: "400"
+                })
+            }
+        }
+
         let splitedName = data.name.toString().split(' ')
         let firstName = splitedName[0]
         let lastName = splitedName.slice(1).join(' ')
@@ -60,7 +71,9 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
             operator_name: String(firstName),
             operator_last_name: String(lastName),
             reason: String(data.reason),
-            date: Number(data.selectDate) != 0 ? String(data.selectDate) : String(data.date)
+            date: "",
+            date_init: String(data.date),
+            date_end: String(data.dateEnd)
         }
 
         const filter = await getFilterCoaching<typeof object>(object)
@@ -85,6 +98,49 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
 
     return (
         <form onSubmit={handleSubmit(handleSubmitForm)}>
+            <div className="flex justify-center items-center gap-2 mb-5">
+                <FieldForm
+                    label="date"
+                    name="Data inicial:"
+                    obrigatory={false}
+                    styles={`w-fit`}
+                    error={errors.date && "Inválido"}
+                >
+                    <Input
+                        id="date"
+                        name="date"
+                        type="date"
+                        styles={`w-full ${errors.date
+                                ? "border-[--label-color-error] dark:border-[--label-color-error]"
+                                : ""
+                            }`}
+                        onForm={true}
+                        value={watch("date")}
+                        register={register}
+                    />
+                </FieldForm>
+
+                <FieldForm
+                    label="dateEnd"
+                    name="Data final:"
+                    obrigatory={false}
+                    styles={`w-fit`}
+                    error={errors.dateEnd && "Inválido"}
+                >
+                    <Input
+                        id="dateEnd"
+                        name="dateEnd"
+                        type="date"
+                        styles={`w-full ${errors.dateEnd && "Inválido"
+                                ? "border-[--label-color-error] dark:border-[--label-color-error]"
+                                : ""
+                            }`}
+                        onForm={true}
+                        value={watch("dateEnd")}
+                        register={register}
+                    />
+                </FieldForm>
+            </div>
             <div className={`lg:flex lg:items-end lg:justify-center lg:gap-2 font-medium`}>
                 <div className={`px-8 w-full items-center justify-center md:flex md:justify-center lg:w-fit md:gap-2 md:px-0`}
                 >
@@ -183,51 +239,6 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
                                 `}
                             onForm={true}
                             value={watch("name")}
-                            register={register}
-                        />
-                    </FieldForm>
-
-                    <FieldForm
-                        label="selectDate"
-                        name="Período:"
-                        obrigatory={false}
-                        styles={`w-fit p-0`}
-                        error={errors.selectDate && "Inválido"}
-                    >
-                        <SelectField
-                            name="selectDate"
-                            id="selectDate"
-                            styles={`w-full sm:w-fit h-11
-                                    ${errors.selectDate ? "border-[--label-color-error] dark:border-[--label-color-error]" : ""}
-                                `}
-                            onForm={true}
-                            value={watch("selectDate")}
-                            register={register}
-                        >
-                            <Option value={"0"} firstValue={"Selecione"} />
-                            <Option value={"7 DIAS"} firstValue={"7 DIAS"} />
-                            <Option value={"15 DIAS"} firstValue={"15 DIAS"} />
-                            <Option value={"30 DIAS"} firstValue={"30 DIAS"} />
-                            <Option value={"45 DIAS"} firstValue={"45 DIAS"} />
-                        </SelectField>
-                    </FieldForm>
-
-                    <FieldForm
-                        label="date"
-                        name="Data:"
-                        obrigatory={false}
-                        styles={`w-fit`}
-                        error={errors.date && "Inválido"}
-                    >
-                        <Input
-                            id="date"
-                            name="date"
-                            type="date"
-                            styles={`w-full
-                                    ${errors.selectDate ? "border-[--label-color-error] dark:border-[--label-color-error]" : ""}
-                                `}
-                            onForm={true}
-                            value={watch("date")}
                             register={register}
                         />
                     </FieldForm>

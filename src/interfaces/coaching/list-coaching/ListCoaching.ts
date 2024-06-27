@@ -67,7 +67,8 @@ export const listCoachingSchema = z.object({
     reason: z.string(),
     name: z.string(),
     selectDate: z.string(),
-    date: z.string()
+    date: z.string(),
+    dateEnd: z.string()
 })
 
 export type listCoachingData = z.infer<typeof listCoachingSchema>
