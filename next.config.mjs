@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
     images: {
         remotePatterns: [
@@ -18,7 +19,41 @@ const nextConfig = {
                 port: "9999"
             }
         ]
-    }
+    },
+    async redirects() {
+        return [
+            {
+                source: '/user',
+                destination: `${process.env.MANAGEMENT_DOMAIN}/user`,
+                permanent: true
+            },
+            {
+                source: '/user/:path',
+                destination: `${process.env.MANAGEMENT_DOMAIN}/user/:path*`,
+                permanent: true
+            },
+            {
+                source: '/register',
+                destination: `${process.env.MANAGEMENT_DOMAIN}/register`,
+                permanent: true
+            },
+            {
+                source: '/register/:path',
+                destination: `${process.env.MANAGEMENT_DOMAIN}/user/:path*`,
+                permanent: true
+            },
+            {
+                source: '/monitoring/:path',
+                destination: `${process.env.MONITORING_DOMAIN}/monitoring/:path*`,
+                permanent: true
+            },
+            {
+                source: '/workout/:path',
+                destination: `${process.env.WORKOUT_DOMAIN}/workout/:path*`,
+                permanent: true
+            }
+        ]
+    },
 };
 
-export default nextConfig;
+export default nextConfig
