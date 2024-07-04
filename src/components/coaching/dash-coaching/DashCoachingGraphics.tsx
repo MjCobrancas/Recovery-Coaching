@@ -94,7 +94,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
         responsive: true,
         scales: {
             x: {
-                max: dashItems.data[3] + 3,
+                max: isFilter ? dashItemsFilter[1] + 3 : dashItems.data[3] + 3,
                 ticks: {
                     stepSize: 1,
                 },
