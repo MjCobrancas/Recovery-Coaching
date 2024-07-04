@@ -30,7 +30,8 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
     function resetFilter() {
         dashFilter(false)
         setDisableButton(false)
-        setDidFilter(true)
+        setDidFilter(false)
+        reset()
     }
 
     async function handleSubmitForm(data: FieldValues) {
@@ -48,7 +49,6 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
         }
 
         setDisableButton(true)
-        setDidFilter(true)
 
         const object = {
             id_creditor: Number(data.creditor),
@@ -58,12 +58,16 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
 
         const filter = await getFilterDashItems<typeof object>(object)
 
+        setDidFilter(true)
+
         setDisableButton(false)
 
         if (!filter.status) {
             toast.error("Não há nenhum dado com esses filtros!", {
                 duration: 5000
             })
+
+            setDidFilter(false)
 
             return
         }
