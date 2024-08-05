@@ -31,6 +31,7 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
         dashFilter(false)
         setDisableButton(false)
         setDidFilter(true)
+        reset()
     }
 
     async function handleSubmitForm(data: FieldValues) {

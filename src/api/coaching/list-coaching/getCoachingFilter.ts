@@ -19,9 +19,9 @@ export async function getFilterCoaching<T>(object: T) {
       .then(async (value: any) => {
         const data = await value.json()
   
-        if (data.length == 0) {
+        if (data.length == 0 || value.status == 400) {
           return {
-            data: null,
+            data: [],
             status: false,
           }
         }
@@ -33,7 +33,7 @@ export async function getFilterCoaching<T>(object: T) {
       })
       .catch((error) => {
         return {
-          data: null,
+          data: [],
           status: false
         }
       })
