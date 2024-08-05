@@ -12,18 +12,21 @@ export async function middleware(request: NextRequest) {
 	const { pathname } = request.nextUrl
 
 	if (!token) {
+		console.log("a")
 		return NextResponse.redirect(`${process.env.FRONTEND_DOMAIN}/login`)
 	}
 
 	const isValidToken = await verifyUserToken()
 
 	if (!isValidToken) {
+		console.log("b")
 		return NextResponse.redirect(`${process.env.FRONTEND_DOMAIN}/login`)
 	}
 
 	const tokenUserValues: ITokenUserValues | null = parseJWT(token)
 
 	if (tokenUserValues == null) {
+		console.log("c")
 		return NextResponse.redirect(`${process.env.FRONTEND_DOMAIN}/login`)
 	}
 

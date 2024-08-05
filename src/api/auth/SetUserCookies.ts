@@ -25,7 +25,7 @@ export default async function SetUserCookies(response: IResult, status: boolean)
             },
             body: JSON.stringify(object)
         }).catch((err) => {
-            console.log("Erro ao logar na aplicação de coaching")
+            console.log("Erro ao logar na aplicação de management")
             return
         })
 

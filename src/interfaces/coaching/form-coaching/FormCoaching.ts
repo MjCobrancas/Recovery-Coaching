@@ -48,16 +48,15 @@ interface ICoachingItemsGroup {
 }
 
 interface IFormCoaching {
+    idUser: number
     Creditor: ICreditor[]
     Operator: IOperator[]
-    backOffice: IBackOffice[]
     coachingItems: ICoachingItemsGroup
 }
 
 interface ISelectCoachingSection {
     creditor: ICreditor[]
     operator: IOperator[]
-    backOffice: IBackOffice[]
     errors: FieldErrors
     currentDate: string
     watch: UseFormWatch<FieldValue<any>>

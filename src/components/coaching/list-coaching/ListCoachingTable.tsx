@@ -29,19 +29,19 @@ export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
                                 Negociador
                             </th>
 
-                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                            <th className={`font-semibold p-2 dark:text-white/80`}>
                                 Supervisor
                             </th>
 
-                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                            <th className={`font-semibold p-2 dark:text-white/80`}>
                                 Credor
                             </th>
 
-                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                            <th className={`font-semibold p-2 dark:text-white/80`}>
                                 Motivo
                             </th>
 
-                            <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
+                            <th className={`font-semibold p-2 dark:text-white/80`}>
                                 Data
                             </th>
 

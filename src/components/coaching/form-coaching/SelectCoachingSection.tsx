@@ -4,7 +4,7 @@ import { Option } from "@/components/Option"
 import { SelectField } from "@/components/SelectField"
 import { ISelectCoachingSection } from "@/interfaces/coaching/form-coaching/FormCoaching"
 
-export function SelectSection({ creditor, operator, backOffice, currentDate, watch, register, errors }: ISelectCoachingSection) {
+export function SelectSection({ creditor, operator, currentDate, watch, register, errors }: ISelectCoachingSection) {
 
     return (
         <section>
@@ -84,36 +84,6 @@ export function SelectSection({ creditor, operator, backOffice, currentDate, wat
                                     key={i}
                                     value={operator.Id_User}
                                     firstValue={operator.Name + " " + operator.Last_Name}
-                                />
-                            )
-                        })}
-                    </SelectField>
-                </FieldForm>
-
-                <FieldForm
-                    label="backOffice"
-                    name="Responsável:"
-                    error={errors.backOffice && "Inválido"}
-                >
-                    <SelectField
-                        name="backOffice"
-                        id="backOffice"
-                        styles={`h-11
-                                ${errors.backOffice ? "border-[--label-color-error] dark:border-[--label-color-error]" : ""}
-                            `}
-                        onForm={true}
-                        value={watch("backOffice")}
-                        register={register}
-                        required
-                    >
-                        <Option value={"0"} firstValue={"Selecione"} />
-
-                        {backOffice.map((backOffice, i) => {
-                            return (
-                                <Option
-                                    key={i}
-                                    value={backOffice.Id_User}
-                                    firstValue={backOffice.Name + " " + backOffice.Last_Name}
                                 />
                             )
                         })}

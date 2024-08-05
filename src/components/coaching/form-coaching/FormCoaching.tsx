@@ -14,13 +14,13 @@ import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { SelectSection } from "./SelectCoachingSection";
 
-export function FormCoaching({ Creditor, Operator, backOffice, coachingItems }: IFormCoaching) {
+export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IFormCoaching) {
 
     const { control, register, handleSubmit, watch, formState: { errors }, setError, reset } = useForm<formCoachingData>({
         defaultValues: {
             creditor: "0",
             operator: "0",
-            backOffice: "0",
+            backOffice: String(idUser),
             reason: "Selecione",
             observation: "",
             formCoaching: [
@@ -62,16 +62,12 @@ export function FormCoaching({ Creditor, Operator, backOffice, coachingItems }: 
     const { fields, update } = useFieldArray({ control, name: "formCoaching" })
     const [disableButton, setDisableButton] = useState(false)
 
-    /* Date region */
-
     let currentDate = ""
     let date = new Date()
     let year = date.getFullYear()
     let month = (date.getMonth() + 1).toString()
     let day = date.getDate().toString()
     currentDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
-
-    /* End of date region */
 
     function openSelect(id: number) {
         const field = fields[id]
@@ -180,7 +176,6 @@ export function FormCoaching({ Creditor, Operator, backOffice, coachingItems }: 
             <SelectSection
                 creditor={Creditor}
                 operator={Operator}
-                backOffice={backOffice}
                 currentDate={currentDate}
                 watch={watch}
                 register={register}

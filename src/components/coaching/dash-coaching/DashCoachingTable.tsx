@@ -1,9 +1,29 @@
 import { IDashBackResponse } from "@/interfaces/coaching/dash-coaching/DashBackOfficesToday";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+    ChartData,
+    ChartOptions
+} from 'chart.js'
+import { useState } from "react";
+import { Bar } from 'react-chartjs-2'
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 export function DashCoachingTable({ backOffices }: IDashBackResponse) {
-
-    /* Date region */
-
+    const [backOfficeValues, setBackOfficeValues] = useState(backOfficeQuantityToday())
     let currentDate = ""
     let date = new Date()
     let year = date.getFullYear()
@@ -11,51 +31,79 @@ export function DashCoachingTable({ backOffices }: IDashBackResponse) {
     let day = date.getDate().toString()
     currentDate = `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year}`
 
-    /* End of date region */
+    function backOfficeQuantityToday() {
+        let maxValue = 0
+
+        const arrayValues = []
+        const labels = []
+
+        for (let i = 0; i < backOffices.length; i++) {
+            labels.push(backOffices[i].name)
+            arrayValues.push(backOffices[i].quantityToday)
+
+            if (backOffices[i].quantityToday > maxValue) {
+                maxValue = backOffices[i].quantityToday
+            }
+        }
+
+        return {
+            labels: labels,
+            quantity: arrayValues,
+            maxQuantity: maxValue
+        }
+    }
+
+    const options: ChartOptions<'bar'> = {
+        indexAxis: 'y' as const,
+        responsive: true,
+        scales: {
+            x: {
+                max: backOfficeValues.maxQuantity + 3,
+                ticks: {
+                    stepSize: 1,
+                },
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: "transparent",
+                },
+                ticks: {
+                    font: {
+                        size: 14,
+                    },
+                },
+            },
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 14,
+                    },
+                },
+            },
+        },
+    };
+
+    const backOfficesChart: ChartData<'bar'> = {
+        labels: backOfficeValues.labels,
+        datasets: [
+            {
+                label: `Quantidade de feedbacks aplicados hoje`,
+                data: backOfficeValues.quantity,
+                borderWidth: 1,
+                backgroundColor: "#fbbf2480",
+                borderColor: "#fbbf24"
+            },
+        ],
+    };
 
     return (
-        <div className={`flex items-center justify-center mt-4 w-full`}>
-            <table className={`w-[70vw] h-full m-2 p-2`}>
-                <thead className={`bg-gray-200 dark:bg-slate-600`}>
-                    <tr>
-
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
-                            Hoje
-                        </th>
-
-                        <th className={`font-semibold p-2 dark:text-white/80`}>
-                            BackOffice
-                        </th>
-
-                        <th className={`font-semibold p-2 dark:text-white/80 rounded-tr-md`}>
-                            Quantidade
-                        </th>
-
-                    </tr>
-                </thead>
-                <tbody className={`items-center p-1 bg-slate-100`}>
-                    {backOffices.map((backOffice, i) => {
-                        return (
-                            <tr
-                                key={i}
-                                className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
-                            >
-                                <td className={`p-2 text-center`}>
-                                    {currentDate}
-                                </td>
-
-                                <td className={`p-2 text-center`}>
-                                    {backOffice.name}
-                                </td>
-
-                                <td className={`p-2 text-center`}>
-                                    {backOffice.quantityToday}
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+        <div className={`flex items-center justify-center mt-4 w-fit`}>
+            <div className={`w-[300px] h-48 lg:w-[600px]`}>
+                <Bar options={options} data={backOfficesChart}/>
+            </div>
         </div>
     )
 }
