@@ -30,7 +30,11 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
     function resetFilter() {
         dashFilter(false)
         setDisableButton(false)
+<<<<<<< HEAD
+        setDidFilter(true)
+=======
         setDidFilter(false)
+>>>>>>> ff2f9b643fc73ee7132da355d0498b6b50c6b8d5
         reset()
     }
 
