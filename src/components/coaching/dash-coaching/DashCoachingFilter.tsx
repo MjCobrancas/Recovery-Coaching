@@ -30,7 +30,11 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
     function resetFilter() {
         dashFilter(false)
         setDisableButton(false)
+<<<<<<< HEAD
         setDidFilter(true)
+=======
+        setDidFilter(false)
+>>>>>>> ff2f9b643fc73ee7132da355d0498b6b50c6b8d5
         reset()
     }
 
@@ -49,7 +53,6 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
         }
 
         setDisableButton(true)
-        setDidFilter(true)
 
         const object = {
             id_creditor: Number(data.creditor),
@@ -59,12 +62,16 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
 
         const filter = await getFilterDashItems<typeof object>(object)
 
+        setDidFilter(true)
+
         setDisableButton(false)
 
         if (!filter.status) {
             toast.error("Não há nenhum dado com esses filtros!", {
                 duration: 5000
             })
+
+            setDidFilter(false)
 
             return
         }

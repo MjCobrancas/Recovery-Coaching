@@ -10,31 +10,31 @@ export async function getCoachingById(id: string) {
     const resp = await fetch(`${process.env.BACKEND_DOMAIN}/get-coaching/${id}`, {
         method: "GET",
         headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + userParse.accessToken,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + userParse.accessToken,
         },
     })
-        .then(async (value: any) => {
-        const data = await value.json()
+        .then(async (value) => {
+            const data = await value.json()
 
-        if(data.message == "Invalid id_form") {
-            return {
-            data: null,
-            status: false
+            if (value.status != 200) {
+                return {
+                    data: null,
+                    status: false
+                }
             }
-        }
 
-        return {
-            data: data as ICoachingAll,
-            status: true
-        }
+            return {
+                data: data as ICoachingAll,
+                status: true
+            }
         })
         .catch(() => {
-        return {
-            data: null,
-            status: false
-        }
+            return {
+                data: null,
+                status: false
+            }
         })
 
     return resp
