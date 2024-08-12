@@ -1,6 +1,7 @@
 'use client'
 
 import { getFilterDashItems } from "@/api/coaching/dash-coaching/getFilterDashItems";
+import { verifyUserToken } from "@/api/generics/verifyToken";
 import { Button } from "@/components/Button";
 import { FieldForm } from "@/components/FieldForm";
 import { Input } from "@/components/Input";
@@ -8,11 +9,14 @@ import { Option } from "@/components/Option";
 import { SelectField } from "@/components/SelectField";
 import { IDashFilters, dashCoachingData, dashCoachingSchema } from "@/interfaces/coaching/dash-coaching/DashFilters";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
 export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dashItemsProps, dashFilter }: IDashFilters) {
+
+    const router = useRouter()
 
     const { control, register, handleSubmit, watch, formState: { errors }, setError, reset } = useForm<dashCoachingData>({
         defaultValues: {
@@ -35,6 +39,12 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
     }
 
     async function handleSubmitForm(data: FieldValues) {
+
+        const isValidToken = await verifyUserToken()
+
+        if (!isValidToken) {
+            return router.push('/login')
+        }
 
         if (String(data.selectDate) != "0" && String(data.date).length > 0) {
             setError("selectDate", {

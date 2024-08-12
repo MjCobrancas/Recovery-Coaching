@@ -1,6 +1,7 @@
 'use client'
 
 import { getFilterCoaching } from "@/api/coaching/list-coaching/getCoachingFilter";
+import { verifyUserToken } from "@/api/generics/verifyToken";
 import { Button } from "@/components/Button";
 import { FieldForm } from "@/components/FieldForm";
 import { Input } from "@/components/Input";
@@ -8,11 +9,14 @@ import { Option } from "@/components/Option";
 import { SelectField } from "@/components/SelectField";
 import { IListCoachingFilter, listCoachingData, listCoachingSchema } from "@/interfaces/coaching/list-coaching/ListCoaching";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
 export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter) {
+
+    const router = useRouter()
 
     const [disableButton, setDisableButton] = useState(false)
     const [didFilter, setDidFilter] = useState(false)
@@ -36,6 +40,13 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
     }
 
     async function handleSubmitForm(data: FieldValues) {
+
+        const isValidToken = await verifyUserToken()
+
+        if (!isValidToken) {
+            return router.push('/login')
+        }
+
         if (String(data.date).length > 0 || String(data.dateEnd).length > 0) {
             if (String(data.date).length == 0 || String(data.dateEnd).length == 0) {
                 setError("date", {

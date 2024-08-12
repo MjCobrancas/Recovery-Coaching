@@ -1,6 +1,7 @@
 'use client'
 
 import { getCoachingById } from "@/api/coaching/list-coaching/getCoachingId";
+import { verifyUserToken } from "@/api/generics/verifyToken";
 import { Button } from "@/components/Button";
 import { FieldForm } from "@/components/FieldForm";
 import { Input } from "@/components/Input";
@@ -11,16 +12,25 @@ import { IResultDefaultResponse } from "@/interfaces/Generics";
 import { ICoachingAll, IListCoachingDialog } from "@/interfaces/coaching/list-coaching/ListCoaching";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 export function ListCoachingDialog({ idForm }: IListCoachingDialog) {
+    const router = useRouter()
 
     const dialog = useRef<HTMLDialogElement>(null)
     const [coachingItem, setCoachingItem] = useState<ICoachingAll | null>(null)
     const [isLoadingModal, setIsLoadingModal] = useState(true)
 
     async function openDialog(idForm: number) {
+
+        const isValidToken = await verifyUserToken()
+
+        if (!isValidToken) {
+            return router.push('/login')
+        }
+
         setIsLoadingModal(true)
         dialog.current?.showModal()
 

@@ -13,8 +13,12 @@ import { useState } from "react";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { SelectSection } from "./SelectCoachingSection";
+import { verifyUserToken } from "@/api/generics/verifyToken";
+import { useRouter } from "next/navigation";
 
 export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IFormCoaching) {
+
+    const router = useRouter()
 
     const { control, register, handleSubmit, watch, formState: { errors }, setError, reset } = useForm<formCoachingData>({
         defaultValues: {
@@ -109,6 +113,13 @@ export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IForm
     }
 
     async function handleSubmitForm(data: FieldValues) {
+
+        const isValidToken = await verifyUserToken()
+
+        if (!isValidToken) {
+            return router.push('/login')
+        }
+
         setDisableButton(true)
 
         const questions = []
