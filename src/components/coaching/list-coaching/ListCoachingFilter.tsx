@@ -56,6 +56,8 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
                     type: "400"
                 })
             }
+
+            return
         }
 
         let splitedName = data.name.toString().split(' ')
