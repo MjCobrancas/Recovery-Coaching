@@ -6,7 +6,7 @@ import { DashCoachingGraphics } from "./DashCoachingGraphics";
 import { DashCoachingTable } from "./DashCoachingTable";
 import { useState } from "react";
 
-export function DashCoachingContainer({ dashReasons, dashItems, backOffices, creditorFilter, userFilter }: IDashContainer) {
+export function DashCoachingContainer({ dashReasons, dashItems, backOffices, creditorFilter, userFilter, userTheme }: IDashContainer) {
 
     const [isFilter, setIsFilter] = useState(false)
     const [dashItemsFilter, setDashItemsFilter] = useState<any[]>([])
@@ -30,6 +30,7 @@ export function DashCoachingContainer({ dashReasons, dashItems, backOffices, cre
             />
 
             <DashCoachingGraphics
+                userTheme={userTheme}
                 dashReasons={dashReasons}
                 dashItems={dashItems}
                 isFilter={isFilter}
@@ -37,6 +38,7 @@ export function DashCoachingContainer({ dashReasons, dashItems, backOffices, cre
             />
 
             <DashCoachingTable
+                userTheme={userTheme}
                 backOffices={backOffices}
             />
         </>

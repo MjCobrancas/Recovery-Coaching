@@ -200,7 +200,7 @@ export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IForm
 
                 <div className={`overflow-x-auto`}>
                     <table className={`table-auto sm:w-full w-[40rem]`}>
-                        <thead className={`bg-gray-200 dark:bg-slate-600 text-sm`}>
+                        <thead className={`bg-gray-200 dark:bg-zinc-800 text-sm`}>
                             <tr>
 
                                 <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
@@ -227,7 +227,7 @@ export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IForm
                                 return (
                                     <tr
                                         key={fields[i].id}
-                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
+                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-zinc-700 dark:even:bg-zinc-800`}
                                     >
 
                                         <td className={`p-2 text-center`}>
@@ -342,7 +342,7 @@ export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IForm
 
             <textarea
                 id="observation"
-                className={`w-full h-28 border-2 border-slate-400 rounded-md outline-none focus:border-blue-500 p-2 dark:bg-slate-600`}
+                className={`w-full h-28 border-2 border-slate-400 rounded-md outline-none focus:border-blue-500 p-2 dark:bg-zinc-800 dark:border-[--border-dark]`}
                 placeholder="Observações"
                 maxLength={600}
                 value={watch("observation")}
@@ -365,7 +365,7 @@ export function FormCoaching({idUser, Creditor, Operator, coachingItems }: IForm
                     type="submit"
                     text="Salvar alterações"
                     disabled={disableButton}
-                    styles={`w-fit text-md h-12 my-2`}
+                    styles={`w-fit text-md h-12 my-2 dark:disabled:bg-slate-500`}
                 />
             </footer>
         </form>

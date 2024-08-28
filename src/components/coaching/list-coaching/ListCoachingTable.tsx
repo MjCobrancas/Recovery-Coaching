@@ -22,7 +22,7 @@ export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
 
             <section className={`max-h-[24.8rem] overflow-y-auto pl-2 mt-4`}>
                 <table className={`w-[96vw] px-4 mx-auto my-4`}>
-                    <thead className={`bg-gray-200 dark:bg-slate-600`}>
+                    <thead className={`bg-gray-200 dark:bg-zinc-800`}>
                         <tr>
 
                             <th className={`font-semibold p-2 dark:text-white/80 rounded-tl-md`}>
@@ -57,7 +57,7 @@ export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
                                 return (
                                     <tr
                                         key={i}
-                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
+                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-zinc-700 dark:even:bg-zinc-800`}
                                     >
 
                                         <td className={`p-2 text-center`}>
@@ -98,7 +98,7 @@ export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
                                 return (
                                     <tr
                                         key={i}
-                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-slate-500 dark:even:bg-slate-600`}
+                                        className={`odd:bg-gray-100 even:bg-gray-200 dark:odd:bg-zinc-700 dark:even:bg-zinc-800`}
                                     >
 
                                         <td className={`p-2 text-center`}>

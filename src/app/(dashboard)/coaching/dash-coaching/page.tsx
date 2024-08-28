@@ -3,6 +3,7 @@ import { getDashCoachingItems } from "@/api/coaching/dash-coaching/getDashCoachi
 import { getDashCoachingReasons } from "@/api/coaching/dash-coaching/getDashCoachingReasons";
 import { getFilterCreditorsDash } from "@/api/coaching/dash-coaching/getFilterCreditorDash";
 import { getFilterUsersDash } from "@/api/coaching/dash-coaching/getFilterUsersDash";
+import { getTheme } from "@/api/theme/getTheme";
 import { PaperBlock } from "@/components/PaperBlock";
 import { DashCoachingContainer } from "@/components/coaching/dash-coaching/DashCoachingContainer";
 import { IResultDefaultResponse } from "@/interfaces/Generics";
@@ -16,14 +17,16 @@ export default async function Home() {
     const backOffice: IResultDefaultResponse<IBackOfficesToday[] | null> = await getBackOfficeToday()
     const creditorFilter: IResultDefaultResponse<IDashCreditorFilter[] | null> = await getFilterCreditorsDash()
     const userFilter: IResultDefaultResponse<IDashUserFilter[] | null> = await getFilterUsersDash()
+    const userTheme = await getTheme()
 
     return (
         <PaperBlock styles={`p-4`}>
-            <h1 className={`text-black/90 text-center rounded-md text-3xl bg-slate-100 mb-4 p-2 font-semibold dark:bg-gray-700 dark:text-white`}>
+            <h1 className={`text-black/90 text-center rounded-md text-3xl bg-slate-100 mb-4 p-2 font-semibold dark:bg-zinc-800 dark:text-white`}>
                 Dificuldades apresentadas pelos operadores durante o pronto atendimento
             </h1>
 
             <DashCoachingContainer
+                userTheme={!userTheme ? `light` : JSON.parse(userTheme!.value).theme}
                 dashReasons={dashReasons}
                 dashItems={dashItems}
                 backOffices={backOffice.data == null ? [] : backOffice.data}

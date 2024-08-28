@@ -21,7 +21,7 @@ export function Input({ type, name, id, value = "", required = false, placeholde
                     duration-200 w-full placeholder:text-[--text-placeholder-login] placeholder:font-medium 
                     dark:bg-[--bg-dark-options] dark:placeholder:text-slate-400 dark:text-[--text-input-dark] disabled:opacity-75 disabled:cursor-not-allowed
                     dark:border-[--border-dark] dark:focus:border-[--focus-input-login]
-                    focus:border-[--focus-input-login]`,
+                    focus:border-[--focus-input-login] print:disabled:bg-white`,
                         styles
                     )}
                     accept={accept}
@@ -50,7 +50,7 @@ export function Input({ type, name, id, value = "", required = false, placeholde
                     duration-200 w-full placeholder:text-[--text-placeholder-login] placeholder:font-medium 
                     dark:bg-[--bg-dark-options] dark:placeholder:text-slate-400 dark:text-[--text-input-dark] disabled:opacity-75 disabled:cursor-not-allowed
                     dark:border-[--border-dark] dark:focus:border-[--focus-input-login]
-                    focus:border-[--focus-input-login]`,
+                    focus:border-[--focus-input-login] print:disabled:bg-white`,
                         styles
                     )}
                     accept={accept}

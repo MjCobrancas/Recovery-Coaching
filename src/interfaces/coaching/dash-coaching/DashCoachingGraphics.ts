@@ -1,4 +1,5 @@
 interface IDashCoachingGraphichsProps {
+    userTheme: string
     dashReasons: { data: number[]} | any
     dashItems: IDashItems | any
     dashItemsFilter: IDashItems | any

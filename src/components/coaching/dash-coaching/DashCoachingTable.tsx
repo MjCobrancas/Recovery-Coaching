@@ -22,7 +22,7 @@ ChartJS.register(
     Legend
 );
 
-export function DashCoachingTable({ backOffices }: IDashBackResponse) {
+export function DashCoachingTable({ backOffices, userTheme }: IDashBackResponse) {
     const [backOfficeValues, setBackOfficeValues] = useState(backOfficeQuantityToday())
     let currentDate = ""
     let date = new Date()
@@ -69,6 +69,7 @@ export function DashCoachingTable({ backOffices }: IDashBackResponse) {
                     color: "transparent",
                 },
                 ticks: {
+                    color: userTheme === "light" ? "#000" : "#FFF",
                     font: {
                         size: 14,
                     },
@@ -78,6 +79,7 @@ export function DashCoachingTable({ backOffices }: IDashBackResponse) {
         plugins: {
             legend: {
                 labels: {
+                    color: userTheme === "light" ? "#000" : "#FFF",
                     font: {
                         size: 14,
                     },

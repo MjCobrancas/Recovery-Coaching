@@ -24,7 +24,7 @@ ChartJS.register(
     Legend
 );
 
-export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, isFilter }: IDashCoachingGraphichsProps) {
+export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, isFilter, userTheme }: IDashCoachingGraphichsProps) {
     const [values, setValues] = useState(dashItems.data[0])
     const [identification, setIdentification] = useState(dashItems.data[1])
     const [names, setNames] = useState(dashItems.data[2])
@@ -47,13 +47,16 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
             },
             y: {
                 beginAtZero: true,
+                ticks: {
+                    color: userTheme === "light" ? "#000" : "#FFF"
+                }
             },
         },
         plugins: {
             legend: {
                 display: true,
                 labels: {
-                    color: "rgb(255, 99, 132)",
+                    color: userTheme === "light" ? "#000" : "#FFF",
                 },
             },
         },
@@ -105,6 +108,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
                     color: "transparent",
                 },
                 ticks: {
+                    color: userTheme === "light" ? "#000" : "#FFF",
                     font: {
                         size: 14,
                     },
@@ -114,6 +118,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
         plugins: {
             legend: {
                 labels: {
+                    color: userTheme === "light" ? "#000" : "#FFF",
                     font: {
                         size: 14,
                     },

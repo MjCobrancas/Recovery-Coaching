@@ -5,6 +5,7 @@ interface IBackOfficesToday {
 
 interface IDashBackResponse {
     backOffices: IBackOfficesToday[]
+    userTheme: string
 }
 
 export type { IBackOfficesToday, IDashBackResponse }

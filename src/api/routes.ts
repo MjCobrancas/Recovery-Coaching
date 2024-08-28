@@ -161,6 +161,12 @@ export const actionRoutes: Array<ActionRoutes> = [
     },
 
     {
+        level: 2,
+        permissions: [1, 2, 3, 4, 5],
+        route: "/coaching/print-coaching"
+    },
+
+    {
         level: 9,
         permissions: [1],
         route: "/workout/creditor-content"

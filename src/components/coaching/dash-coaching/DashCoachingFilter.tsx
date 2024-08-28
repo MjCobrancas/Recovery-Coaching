@@ -208,7 +208,7 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
                         type="submit"
                         text="Filtrar"
                         disabled={disableButton}
-                        styles={`w-full md:w-[90px] text-md h-11`}
+                        styles={`w-full md:w-[90px] text-md h-11 dark:disabled:bg-slate-500 dark:disabled:border-white`}
                     />
 
                     <input
@@ -216,7 +216,7 @@ export function DashCoachingFilter({ creditorFilter, userFilter, setFilter, dash
                         value="Remover filtros"
                         onClick={() => resetFilter()}
                         disabled={!didFilter}
-                        className={`h-11 w-18 text-md font-medium p-2 border border-red-400 text-red-500 rounded-md hover:bg-red-400 hover:text-white duration-200 cursor-pointer disabled:bg-slate-300 disabled:border-slate-400 disabled:cursor-not-allowed disabled:text-gray-100 dark:disabled:bg-slate-500 dark:disabled:text-gray-200`}
+                        className={`h-11 w-18 text-md font-medium p-2 border border-red-400 text-red-500 rounded-md hover:bg-red-400 hover:text-white duration-200 cursor-pointer disabled:bg-slate-300 disabled:border-slate-400 disabled:cursor-not-allowed disabled:text-gray-100 dark:disabled:text-gray-200 dark:disabled:bg-slate-500`}
                     />
 
                     <Toaster
