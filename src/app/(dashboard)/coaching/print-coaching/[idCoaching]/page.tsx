@@ -119,25 +119,39 @@ export default async function Home({ params }: { params: { idCoaching: string } 
 
                                             <td className={`p-2 text-center flex gap-2 print:w-full print:flex print:flex-col print:bg-white`}>
                                                 {item.Answer == false &&
-                                                    <SelectField
-                                                        id="answerNot"
-                                                        name="answerNot"
-                                                        disabled
-                                                    >
-                                                        <Option
-                                                            value={"none"}
-                                                            firstValue={item.Complement}
+                                                    <>
+                                                        <SelectField
+                                                            id="answerNot"
+                                                            name="answerNot"
+                                                            disabled
+                                                        >
+                                                            <Option
+                                                                value={"none"}
+                                                                firstValue={item.Complement}
+                                                            />
+                                                        </SelectField>
+
+                                                        <Input
+                                                            id="desc"
+                                                            name="desc"
+                                                            type="text"
+                                                            value={item.Description}
+                                                            disabled
+                                                            styles={item.Complement != "Outro motivo" ? "w-0 h-0 hidden" : ""}
                                                         />
-                                                    </SelectField>
+                                                    </>
+
                                                 }
 
-                                                <Input
-                                                    id="desc"
-                                                    name="desc"
-                                                    type="text"
-                                                    value={item.Description}
-                                                    disabled
-                                                />
+                                                {item.Answer == true &&
+                                                    <Input
+                                                        id="desc"
+                                                        name="desc"
+                                                        type="text"
+                                                        value={item.Description}
+                                                        disabled
+                                                    />
+                                                }
                                             </td>
 
                                         </tr>
