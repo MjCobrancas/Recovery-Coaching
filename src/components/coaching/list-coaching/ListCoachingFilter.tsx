@@ -55,9 +55,9 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
                 setError("dateEnd", {
                     type: "400"
                 })
-            }
 
-            return
+                return
+            }
         }
 
         let splitedName = data.name.toString().split(' ')
