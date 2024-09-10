@@ -43,6 +43,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
             x: {
                 ticks: {
                     stepSize: 1,
+                    color: userTheme === "light" ? "#000" : "#FFF"
                 },
             },
             y: {
@@ -100,6 +101,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
                 max: isFilter ? dashItemsFilter[1] + 3 : dashItems.data[3] + 3,
                 ticks: {
                     stepSize: 1,
+                    color: userTheme == "light" ? "#000" : "#FFF"
                 },
             },
             y: {
@@ -192,7 +194,6 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
         ],
     };
 
-
     const [hasItems, setHasItems] = useState(false)
     const [hasReason, setHasReason] = useState(false)
 
@@ -202,8 +203,7 @@ export function DashCoachingGraphics({ dashReasons, dashItems, dashItemsFilter, 
                 <div className={`w-full ${hasItems ? `` : ``}`}>
                     <Bar options={options} data={opening} className={`z-10 ${hasItems ? `` : `h-0`}`} />
                     <div
-                        className={`w-full border-2 rounded-md z-50 h-48 ${hasItems ? `hidden` : `relative`
-                            }`}
+                        className={`w-full border-2 rounded-md z-50 h-48 ${hasItems ? `hidden` : `relative`}`}
                     >
                         <div
                             className="h-full w-full flex animate-pulse flex-row items-center justify-center"

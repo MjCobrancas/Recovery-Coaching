@@ -61,6 +61,7 @@ export function DashCoachingTable({ backOffices, userTheme }: IDashBackResponse)
                 max: backOfficeValues.maxQuantity + 3,
                 ticks: {
                     stepSize: 1,
+                    color: userTheme == "light" ? "#000" : "#FFF"
                 },
             },
             y: {

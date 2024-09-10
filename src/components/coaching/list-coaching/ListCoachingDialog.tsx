@@ -11,7 +11,7 @@ import { Option } from "@/components/Option";
 import { SelectField } from "@/components/SelectField";
 import { IResultDefaultResponse } from "@/interfaces/Generics";
 import { ICoachingAll, IListCoachingDialog } from "@/interfaces/coaching/list-coaching/ListCoaching";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -229,18 +229,19 @@ export function ListCoachingDialog({ idForm }: IListCoachingDialog) {
 
                         <div className={`flex justify-end print print:hidden`}>
                             <Link
-                                className={`bg-blue-400 hover:bg-blue-500 duration-100 text-white rounded-md px-2 py-[5px] mr-2 items-center justify-center flex`}
+                                className={`bg-blue-400 hover:bg-blue-500 duration-300 text-white rounded-md px-2 py-[5px] mr-2 items-center justify-center flex gap-1 font-bold`}
                                 href={`/coaching/print-coaching/${idForm}`}
                             >
+                                <FontAwesomeIcon icon={faPrint} />
                                 Imprimir 
                             </Link>
 
-                                <Button
-                                    type="button"
-                                    text="Fechar"
-                                    styles={`w-fit h-fit border-red-400 bg-red-400 text-white hover:bg-red-500 focus:bg-red-400 text-md px-2 py-2`}
-                                    OnClick={() => closeDialog()}
-                                />
+                            <Button
+                                type="button"
+                                text="Fechar"
+                                styles={`w-fit h-fit border-red-400 bg-red-400 text-white hover:bg-red-500 focus:bg-red-400 text-md px-2 py-2`}
+                                OnClick={() => closeDialog()}
+                            />
                         </div>
                     </>
                 ) : (
