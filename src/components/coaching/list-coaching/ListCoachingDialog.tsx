@@ -2,7 +2,6 @@
 
 import { getCoachingById } from "@/api/coaching/list-coaching/getCoachingId";
 import { verifyUserToken } from "@/api/generics/verifyToken";
-import { Ancora } from "@/components/Ancora";
 import { Button } from "@/components/Button";
 import { FieldForm } from "@/components/FieldForm";
 import { Input } from "@/components/Input";
