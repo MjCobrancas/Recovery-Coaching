@@ -5,7 +5,7 @@ import { ListCoachingDialog } from "./ListCoachingDialog"
 import { useState } from "react"
 import { ListCoachingFilter } from "./ListCoachingFilter"
 
-export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
+export function ListCoachingTable({ backOffices, coachings, creditors }: IListCoachingAll) {
 
     const [isFiltred, setIsFiltred] = useState<IListCoaching[]>([])
 
@@ -16,6 +16,7 @@ export function ListCoachingTable({ coachings, creditors }: IListCoachingAll) {
     return (
         <>
             <ListCoachingFilter
+                backOffices={backOffices}
                 creditors={creditors}
                 setFilter={setValueFilter}
             />

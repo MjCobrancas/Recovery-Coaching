@@ -1,4 +1,5 @@
 import { ICreditors } from "@/interfaces/generics/Creditors"
+import { IGetAllBackOffices } from "@/interfaces/generics/IGetAllBackOffices"
 import { z } from "zod"
 
 // ListCoaching
@@ -36,6 +37,7 @@ interface ICoachingObservation {
 interface IListCoachingAll {
     coachings: IListCoaching[]
     creditors: ICreditors[]
+    backOffices: IGetAllBackOffices[]
 }
 
 interface IListCoaching {
@@ -60,10 +62,12 @@ interface IListCoachingDialog {
 interface IListCoachingFilter {
     creditors: ICreditors[]
     setFilter: (value: IListCoaching[]) => void
+    backOffices: IGetAllBackOffices[]
 }
 
 export const listCoachingSchema = z.object({
     creditor: z.string(),
+    backOffice: z.string(),
     reason: z.string(),
     name: z.string(),
     selectDate: z.string(),

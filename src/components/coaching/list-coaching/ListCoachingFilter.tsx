@@ -14,7 +14,7 @@ import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter) {
+export function ListCoachingFilter({ backOffices, creditors, setFilter }: IListCoachingFilter) {
 
     const router = useRouter()
 
@@ -24,6 +24,7 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
     const { control, register, handleSubmit, watch, formState: { errors }, setError, reset } = useForm<listCoachingData>({
         defaultValues: {
             creditor: "0",
+            backOffice: "0",
             reason: "Selecione",
             name: "",
             selectDate: "0",
@@ -86,7 +87,8 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
             reason: String(data.reason),
             date: "",
             date_init: String(data.date),
-            date_end: String(data.dateEnd)
+            date_end: String(data.dateEnd),
+            id_supervisor: Number(data.backOffice)
         }
 
         const filter = await getFilterCoaching<typeof object>(object)
@@ -182,6 +184,37 @@ export function ListCoachingFilter({ creditors, setFilter }: IListCoachingFilter
                                         key={i}
                                         value={company.Id_Creditor}
                                         firstValue={company.Creditor}
+                                    />
+                                )
+                            })}
+                        </SelectField>
+                    </FieldForm>
+
+                    <FieldForm
+                        label="backoffice"
+                        name="Supervisor:"
+                        obrigatory={false}
+                        styles={`w-full md:w-52`}
+                        error={errors.backOffice ? "Inválido" : ""}
+                    >
+                        <SelectField
+                            name="backOffice"
+                            id="backOffice"
+                            styles={`w-full md:w-52
+                                    ${errors.backOffice ? "border-[--label-color-error] dark:border-[--label-color-error]" : ""}
+                                `}
+                            onForm={true}
+                            value={watch("backOffice")}
+                            register={register}
+                        >
+                            <Option value={"0"} firstValue={"Selecione"} />
+
+                            {backOffices.map((backOffice, i) => {
+                                return (
+                                    <Option
+                                        key={i}
+                                        value={backOffice.Id_User}
+                                        firstValue={`${backOffice.Name} ${backOffice.Last_Name}`}
                                     />
                                 )
                             })}
